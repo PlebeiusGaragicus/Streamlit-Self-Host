@@ -1,34 +1,10 @@
 import os
-import pathlib
-from PIL import Image
-
 import streamlit as st
 
-from src.common import (
-    cprint,
-    Colors,
-)
-
+from src.common import cprint, Colors
+from src.interface import cmp_header, center_text
 
 APP_NAME = "Template"
-STATIC_PATH = pathlib.Path(__file__).parent.parent / "static"
-
-
-
-def cmp_header():
-    favicon = Image.open(os.path.join(STATIC_PATH, "favicon.ico"))
-    st.set_page_config(
-        # page_title="DEBUG!" if os.getenv("DEBUG", False) else "NOS4A2",
-        page_title=APP_NAME,
-        page_icon=favicon,
-        layout="wide",
-        initial_sidebar_state="auto",
-    )
-
-    # column_fix()
-    # center_text("p", "🗣️🤖💬", size=60) # or h1, whichever
-    # st.sidebar.header("", divider="rainbow")
-
 
 
 def log_rerun():
@@ -40,15 +16,21 @@ def log_rerun():
     cprint(f"RUNNING for: {ip_addr} - {lang} - {user_agent}", Colors.YELLOW)
 
 
+
 def main_page():
     log_rerun()
 
-    cmp_header()
+    cmp_header(APP_NAME)
 
-    st.write("hi")
+    center_text("p", "🗣️🤖💬", size=60) # or h1, whichever
+    st.header("", divider="rainbow")
+
+    st.write("Hello, Streamlit! 🎉")
 
     if os.getenv("DEBUG"):
         with st.sidebar:
             st.write(":orange[DEBUG]")
+            st.write(st.secrets)
+            st.write( st.session_state )
             st.write( st.context.cookies )
             st.write( st.context.headers )

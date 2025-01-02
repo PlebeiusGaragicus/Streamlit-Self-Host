@@ -1,1 +1,3 @@
-template
+```sh
+mv .env.example .env
+```

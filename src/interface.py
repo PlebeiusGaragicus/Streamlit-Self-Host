@@ -1,4 +1,11 @@
+import os
+import pathlib
+from PIL import Image
+
 import streamlit as st
+
+STATIC_PATH = pathlib.Path(__file__).parent.parent / "static"
+
 
 
 def column_fix():
@@ -40,3 +47,41 @@ def centered_button_trick():
         st.empty()
 
     return columns[1]
+
+
+# def hide_anchor_link():
+def hide_markdown_header_links():
+    """
+    https://discuss.streamlit.io/t/hide-titles-link/19783/3
+    """
+
+        # <style>
+        # .css-15zrgzn {display: none}
+        # .css-eczf16 {display: none}
+        # .css-jn99sy {display: none}
+        # .st-emotion-cache-gi0tri {display: none}
+        # .e121c1cl3 {display: none}
+        # </style>
+    st.markdown("""
+        <style>
+        .stApp a:first-child {
+            display: none;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+
+
+def cmp_header(APP_NAME: str):
+    favicon = Image.open(os.path.join(STATIC_PATH, "favicon.ico"))
+    st.set_page_config(
+        # page_title="DEBUG!" if os.getenv("DEBUG", False) else "NOS4A2",
+        page_title=APP_NAME,
+        page_icon=favicon,
+        layout="wide",
+        initial_sidebar_state="auto",
+    )
+
+    hide_markdown_header_links()
+
+    # column_fix()

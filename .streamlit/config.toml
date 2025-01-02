@@ -4,18 +4,7 @@
 # gatherUsageStats = true
 gatherUsageStats = false
 
-
 [client]
-# Controls whether uncaught app exceptions and deprecation warnings
-# are displayed in the browser. By default, this is set to True and
-# Streamlit displays app exceptions and associated tracebacks, and
-# deprecation warnings, in the browser.
-#
-# If set to False, deprecation warnings and full exception messages
-# will print to the console only. Exceptions will still display in the
-# browser with a generic error message. For now, the exception type and
-# traceback show in the browser also, but they will be removed in the
-# future.
 # Default: true
 showErrorDetails = true
 
@@ -33,31 +22,28 @@ showErrorDetails = true
 # Default: "auto"
 # toolbarMode = "auto"
 # toolbarMode = "viewer"
-# toolbarMode = "minimal"
-
+toolbarMode = "minimal"
 
 
 [theme]
-
-# The preset Streamlit theme that your custom theme inherits from.
-# One of "light" or "dark".
+# base = "light"
 base = "dark"
+
+
+# https://htmlcolorcodes.com/colors/shades-of-orange/
+# FFAC1C
 
 # Primary accent color for interactive elements.
 primaryColor = "#FF7F50"
-# TODO
-# https://htmlcolorcodes.com/colors/shades-of-orange/
-#FFAC1C
 
 # Background color for the main content area.
 # backgroundColor = "blue"
 
 # Background color used for the sidebar and most interactive widgets.
-secondaryBackgroundColor = "#1E1E1E"
+# secondaryBackgroundColor = "#1E1E1E"
 
 # Color used for almost all text.
 # textColor = ""
-
 
 # Font family for all text in the app, except code blocks. One of "sans serif",
 # "serif", or "monospace".

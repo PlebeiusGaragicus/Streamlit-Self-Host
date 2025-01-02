@@ -1,8 +1,4 @@
 if __name__ == "__main__":
-    # instead of doing this - becasue we're running in Docker... just user `--env-file` when we just the container...
-    # import dotenv
-    # dotenv.load_dotenv()
-
     # import logging
     # logging.getLogger("fsevents").setLevel(logging.WARNING)
     # logging.getLogger("PIL").setLevel(logging.WARNING)
