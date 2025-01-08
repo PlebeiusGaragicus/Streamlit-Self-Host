@@ -3,8 +3,14 @@ import streamlit as st
 
 from src.common import cprint, Colors
 from src.interface import cmp_header, center_text
+from src.login import login
 
-APP_NAME = "Template"
+# APP_NAME = "Template"
+
+HOME_SCREEN_TEXT = """
+
+# 🗣️🤖💬
+"""
 
 
 def log_rerun():
@@ -20,7 +26,19 @@ def log_rerun():
 def main_page():
     log_rerun()
 
-    cmp_header(APP_NAME)
+####################################################
+    if not login():
+        with st.container(border=True):
+            cols2 = st.columns(2)
+        # with cols2[1]:
+            # st.markdown("![PlebChat](app/static/assistant_big_nobg.png)")
+        with cols2[0]:
+            st.markdown(HOME_SCREEN_TEXT)
+
+        st.stop()
+####################################################
+
+    cmp_header(os.getenv("APP_NAME", "Streamlit"))
 
     center_text("p", "🗣️🤖💬", size=60) # or h1, whichever
     st.header("", divider="rainbow")
@@ -28,8 +46,7 @@ def main_page():
     st.write("Hello, Streamlit! 🎉")
 
     if os.getenv("DEBUG"):
-        with st.sidebar:
-            st.write(":orange[DEBUG]")
+        with st.sidebar.popover("DEBUG"):
             st.write(st.secrets)
             st.write( st.session_state )
             st.write( st.context.cookies )

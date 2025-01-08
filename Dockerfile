@@ -19,8 +19,6 @@ COPY .env .env
 COPY run_streamlit.py run_streamlit.py
 COPY src src
 
-EXPOSE 8501
-
 # Define the basic ENTRYPOINT, without specific arguments
 ENTRYPOINT ["streamlit", "run", "run_streamlit.py"]
 

@@ -1,7 +1,7 @@
 services:
 
-  streamlit_template:
-    container_name: streamlit_template
+  streamlit:
+    container_name: ${APP_NAME:?Your .env file must have a APP_NAME variable}
 
     build:
       context: .
@@ -14,12 +14,14 @@ services:
       # Map local files to the container for live updates (useful for development)
       # TODO: should this be removed for production?  Likely...
       - ./src:/app/src
+      - ./auth.yaml:/app/auth.yaml
 
     environment:
       # Avoid output buffering; this line ensures that print() statements are sent directly to the terminal
       - PYTHONUNBUFFERED=1
       # Set DEBUG to 1 (in your .env file) if you want to see the logs
       - DEBUG=${DEBUG:-0}
+      - APP_NAME=${APP_NAME:?Your .env file must have a APP_NAME variable}
 
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:${STREAMLIT_PORT}/_stcore/health"]
